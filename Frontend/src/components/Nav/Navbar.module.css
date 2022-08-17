@@ -1,0 +1,32 @@
+.navbar {
+    width: 100%;
+    height: 70px;
+    background: #0FC4E8;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-container {
+    margin-left: 80px;
+}
+
+.logo-container span{
+    border: 1px solid #333;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.links-container {
+    display: flex;
+    width: 300px;
+    justify-content: space-evenly;
+    margin-right: 80px;
+}
+
+.links-container a {
+    text-decoration: none;
+    color: #ffffff;
+}

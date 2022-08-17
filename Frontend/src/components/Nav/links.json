@@ -1,0 +1,20 @@
+{
+    "links": [
+        {
+            "label": "Home",
+            "href": "/home"
+        },
+        {
+            "label": "Contact",
+            "href": "/contact"
+        },
+        {
+            "label": "About",
+            "href": "/about"
+        },
+        {
+            "label": "Sing In",
+            "href": "/login"
+        }
+    ]
+}

@@ -1,4 +1,3 @@
-from pyexpat import model
 from rest_framework import viewsets 
 from studenthousing.api import serializers
 from studenthousing import models

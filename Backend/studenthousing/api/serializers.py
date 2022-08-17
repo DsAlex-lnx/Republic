@@ -1,19 +1,18 @@
 from rest_framework import serializers
-from studenthousing import models
+from studenthousing.models import User, Address, Republic
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.User
+        model = User
         fields = '__all__'
 
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Address
-        fields = ('street', 'district', 'city', 'house_number', 'zip_code')
+        model = Address
+        fields = '__all__'
 
 class RepublicSerializer(serializers.ModelSerializer):
-    user_name = serializers.CharField(source='user.name')
-    
     class Meta:
-        model = models.Republic
-        fields = ('title', 'price', 'description', 'house_type', 'user_name')
+        model = Republic
+        fields = '__all__'
+

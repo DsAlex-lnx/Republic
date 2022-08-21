@@ -30,10 +30,12 @@ class Republic(models.Model):
     price = models.FloatField(max_length=10)
     description = models.CharField(max_length=255)
     house_type = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='republics')
     address = models.OneToOneField(Address, on_delete=models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='republics', blank=True, null=True)
     create_at = models.DateField(auto_now_add=True)
     update_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.title
+
+

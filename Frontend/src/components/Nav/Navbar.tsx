@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from './Navbar.module.css'
+import logo from '../../assets/logo.png'
 import * as data from './links.json'
+
 const linksString = JSON.stringify(data)
 const links = JSON.parse(linksString).links
 
@@ -29,7 +31,7 @@ export const Navbar: React.FC<{}> = () => {
     return (
         <nav className={styles.navbar}>
             <div className={styles['logo-container']}>
-                <span>logo</span>
+                <img src={ logo }></img>
             </div>
             <Links links={links} />
         </nav>

@@ -1,8 +1,13 @@
+@import url( 'https://fonts.googleapis.com/css?family=Montserrat:400,800' );
 .navbar {
+    font-family: 'Montserrat';
+    letter-spacing: 1;
+    margin-top: 15px;
     width: 100%;
-    height: 70px;
-    background: #0FC4E8;
-    border-bottom: 1px solid #333;
+    height: 80px;
+    background: #00d5ff;
+    border-bottom: 1px solid #0FC4E8;;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,23 +15,26 @@
 
 .logo-container {
     margin-left: 80px;
+    margin-top: 5px;
+    cursor: pointer;
 }
 
-.logo-container span{
-    border: 1px solid #333;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 20px;
+.logo-container img {
+    width: 120px;
+    height: 120px;
 }
 
 .links-container {
     display: flex;
-    width: 300px;
+    width: 350px;
     justify-content: space-evenly;
-    margin-right: 80px;
+    margin-right: 90px;
 }
 
 .links-container a {
     text-decoration: none;
     color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px;
 }

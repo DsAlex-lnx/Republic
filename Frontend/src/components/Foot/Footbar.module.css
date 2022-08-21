@@ -1,0 +1,24 @@
+@import url( 'https://fonts.googleapis.com/css?family=Montserrat:400,800' );
+.main {
+    width: 100%;
+    height: 110px;
+    background-image: linear-gradient(#00d5ff, #0077ff); 
+    border-bottom: 1px solid #0FC4E8;;
+    border-radius: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 0px 0px 0px;
+    color: white;
+    font-family: 'Montserrat';
+}
+
+.main strong {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.main p {
+    margin-top: -5px;
+}

@@ -1,41 +1,19 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
-import { Navbar } from './components/Nav/Navbar'
-
-type Repository = {
-  title: string;
-  description: string;
-}
+import './App.css'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { Home } from './pages/homepage/Homepage'
+import { Login } from './pages/login/Login'
+import { Register } from './pages/register/Register'
 
 function App() {
-
   return (
-    <>
-      <Navbar />
-      <h1>Hello world</h1>
-    </>
+    <Router>
+      <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='login' element={<Login />} />
+          <Route path='register' element={<Register />} />
+      </Routes>
+    </Router>
   )
-
-  // const { data, isFetching, error } = useQuery<Repository[]>('republics', async () => {
-  //   const response = await axios.get('https://127.0.0.1:8000/republics/')
-
-  //   return response.data;
-  // })
-
-  // return (
-  //   <ul>
-  //     { isFetching && <p>Loading...</p> }
-  //     { data?.map(repo => {
-  //       return (
-  //         <li key={repo.title}>
-  //           <strong>{repo.title}</strong>
-  //           <p>{repo.description}</p>
-  //         </li>
-  //       )
-  //     })}
-  //   </ul>
-  // )
 }
 
 export default App

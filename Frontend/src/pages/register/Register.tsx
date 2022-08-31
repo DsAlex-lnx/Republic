@@ -34,7 +34,7 @@ export const Register = () => {
         <div className={styles.main}>
             <div className={styles.container}>
                 <div className={styles['sign-up']}>
-                    <form onSubmit={handleRegister}>
+                    <form onSubmit={ handleRegister }>
                         <div className={styles['logo-container']}>
                             <img src={ logo }></img>
                         </div>

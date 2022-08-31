@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from uuid import uuid4
 
 class Address(models.Model):
@@ -12,12 +13,9 @@ class Address(models.Model):
     def __str__(self):
         return self.street
 
-class User(models.Model):
-    id_user = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
-    password = models.CharField(max_length=16)
-    phone = models.CharField(max_length=11, unique=True)
+class Locator(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=11, unique=True, blank=True, null=True)
     create_at = models.DateField(auto_now_add=True)
     update_at = models.DateField(auto_now=True)
 
@@ -31,7 +29,7 @@ class Republic(models.Model):
     description = models.CharField(max_length=255)
     house_type = models.IntegerField()
     address = models.OneToOneField(Address, on_delete=models.SET_NULL, blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='republics', blank=True, null=True)
+    user = models.ForeignKey(Locator, on_delete=models.CASCADE, related_name='republics', blank=True, null=True)
     create_at = models.DateField(auto_now_add=True)
     update_at = models.DateField(auto_now=True)
 

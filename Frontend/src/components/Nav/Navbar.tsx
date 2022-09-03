@@ -2,6 +2,9 @@ import React from 'react'
 import styles from './Navbar.module.css'
 import logo from '../../assets/logo.png'
 import * as data from './links.json'
+import { useAuth } from '../../contexts/AuthProvider/useAuth'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { Api } from '../../services/api'
 
 const linksString = JSON.stringify(data)
 const links = JSON.parse(linksString).links
@@ -21,10 +24,23 @@ const Links: React.FC<{ links: Link[] }> = ({ links }) => {
                             {link.label}
                         </a>
                     </div>
+                    
                 )
             })}
         </div>
     )
+}
+
+const Logout = async () => {
+    const auth = useAuth()
+    const navigate = useNavigate()
+    try {
+        const response = await Api.get('/logout')
+        auth.logout()
+    } catch (error){
+        console.log(error)
+    }
+
 }
 
 export const Navbar: React.FC<{}> = () => {
@@ -33,6 +49,7 @@ export const Navbar: React.FC<{}> = () => {
             <div className={styles['logo-container']}>
                 <img src={ logo }></img>
             </div>
+            <button onClick={Logout}>logout</button>
             <Links links={links} />
         </nav>
     )

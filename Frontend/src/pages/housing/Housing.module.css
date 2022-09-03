@@ -1,0 +1,88 @@
+@import url( 'https://fonts.googleapis.com/css?family=Montserrat:400,800' );
+
+.main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'monserrat', sans-serif;
+    min-height: 100%;
+    margin: 10%;
+}
+
+.container {
+    position: relative;
+    width: 768px;
+    max-width: 100%;
+    /* max-height: 580px; */
+    background: linear-gradient(#00a2ff, #ae00ff);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+                0 10px 10px rgba(0,0,0,0.22);
+}
+
+form {
+    background: linear-gradient(#00a2ff, #0080ff, #d900ff);;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+
+.logo-container img {
+    height: 150px;
+    width: 150px;
+}
+
+p {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 15px 0 20px;
+}
+ 
+input {
+    background: #eee;
+    padding: 12px 15px;
+    margin: 8px 15px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+a {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+}
+
+button {
+    color: #fff;
+    background-image: linear-gradient(20deg, #0080ff, #ae00ff);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 55px;
+    margin: 20px;
+    border-radius: 20px;
+    border: 1px solid #00a6ff;
+    outline: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+}
+
+button:active{
+    transform: scale(0.90);
+}
+button:hover{
+    background-image: linear-gradient(90deg, #0080ff, #ae00ff);
+}

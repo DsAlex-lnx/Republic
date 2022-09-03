@@ -12,7 +12,7 @@ export const Login = () => {
 
     const auth = useAuth()
 
-    const handleSubmit = async (e: React.FormEvent<HTMLChangeElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         
         try {
@@ -34,7 +34,7 @@ export const Login = () => {
                         </div>
                         <p>Use your username for sing in</p>
                         <input type='text' name='username' placeholder='Username' value={username} onChange={e => setUsername(e.target.value)} required/>
-                        <input type='password' name='passwd' placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} required/>
+                        <input type='password' name='password' placeholder='Password' value={password} onChange={e => setPassword(e.target.value)} required/>
                         <a className={styles.fgt} href='#'>Forget your Password?</a>
                         <button type='submit'>Sign in</button>
                     </form>                

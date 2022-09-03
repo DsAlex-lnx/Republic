@@ -9,8 +9,8 @@ from studenthousing.views import login_api, get_user_data
 route = routers.DefaultRouter()
 
 route.register(r'users', viewsets.UserViewset, basename='Users')
-route.register(r'address', viewsets.AddressViewset, basename='Address')
 route.register(r'republics', viewsets.RepublicsViewset, basename='Republics')
+route.register(r'address', viewsets.AddressViewset, basename='Address')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,43 +1,28 @@
+from concurrent.futures.process import _chain_from_iterable_of_lists
+from dataclasses import field, fields
+from imp import source_from_cache
 from rest_framework import serializers, validators
 from rest_framework.response import Response
 from studenthousing.models import Locator, Address, Republic
 from django.contrib.auth.models import User
 from knox.auth import AuthToken
 
+
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
         fields = '__all__'
 
-class RepublicSerializer(serializers.ModelSerializer):
-    user_name = serializers.CharField(source='user.name', read_only=True)
-    user_phone = serializers.CharField(source='user.phone', read_only=True)
-    address_street = serializers.CharField(source='address.street', read_only=True)
-    address_district = serializers.CharField(source='address.district', read_only=True)
-    class Meta:
-        model = Republic
-        fields = (  'id_republic',
-                    'title', 
-                    'description', 
-                    'price', 
-                    'house_type', 
-                    'user_name', 
-                    'user_phone', 
-                    'address_street',
-                    'address_district'
-                )
-
 class UserSerializer(serializers.ModelSerializer):
-    republics = RepublicSerializer(many=True, read_only=True)
     phone = serializers.CharField(source='locator.phone')
     
     class Meta:
         model = User
-        fields = (  'username',
+        fields = (  'id',
+                    'username',
                     'email', 
                     'password', 
                     'phone',
-                    'republics'
                 )
 
         extra_kwargs = {
@@ -66,3 +51,33 @@ class UserSerializer(serializers.ModelSerializer):
         Locator.objects.create(user=user, phone=validated_data['locator']['phone'])
 
         return user
+
+class RepublicSerializer(serializers.ModelSerializer):
+    address = AddressSerializer()
+    user_name = serializers.CharField(source='user.username', read_only=True)
+    user_phone = serializers.CharField(source='user.locator.phone', read_only=True)
+
+    class Meta:
+        model = Republic
+        fields = (  'title', 
+                    'description', 
+                    'price', 
+                    'house_type', 
+                    'address',
+                    'user_name',
+                    'user_phone'
+                )
+
+    def create(self, validated_data):
+        request = self.context.get('request')
+        
+        user_id = request.user.id
+        locator = Locator.objects.get(user=user_id)
+        
+        address_data = validated_data.pop('address')
+        address = Address.objects.create(**address_data)
+        
+        republic = Republic.objects.create(address=address, user=locator, **validated_data)
+        republic.save()
+        
+        return republic

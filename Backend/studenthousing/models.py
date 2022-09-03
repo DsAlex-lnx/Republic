@@ -7,7 +7,6 @@ class Address(models.Model):
     street = models.CharField(max_length=100)
     district = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
-    house_number = models.IntegerField()
     zip_code = models.CharField(max_length=9)
 
     def __str__(self):

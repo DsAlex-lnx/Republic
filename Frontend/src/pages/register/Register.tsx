@@ -12,7 +12,7 @@ export const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleRegister = async (e: React.FormEvent<HTMLChangeElement>) => {
+    const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         const data = {

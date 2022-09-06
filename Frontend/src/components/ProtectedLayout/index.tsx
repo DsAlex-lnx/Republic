@@ -1,5 +1,5 @@
 import { useAuth } from '../../contexts/AuthProvider/useAuth'
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 export const ProtectedLayout = ({ children} : { children : JSX.Element | null }) => {
 

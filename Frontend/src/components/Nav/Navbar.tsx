@@ -37,6 +37,8 @@ const Logout = async () => {
     try {
         const response = await Api.get('/logout')
         auth.logout()
+        alert('You logged out!')
+        navigate('/login')
     } catch (error){
         console.log(error)
     }
@@ -49,7 +51,7 @@ export const Navbar: React.FC<{}> = () => {
             <div className={styles['logo-container']}>
                 <img src={ logo }></img>
             </div>
-            <button onClick={Logout}>logout</button>
+            <button onClick={ Logout }>logout</button>
             <Links links={links} />
         </nav>
     )

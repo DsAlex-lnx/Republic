@@ -1,8 +1,5 @@
-from concurrent.futures.process import _chain_from_iterable_of_lists
-from dataclasses import field, fields
-from imp import source_from_cache
+from dataclasses import fields
 from rest_framework import serializers, validators
-from rest_framework.response import Response
 from studenthousing.models import Locator, Address, Republic
 from django.contrib.auth.models import User
 from knox.auth import AuthToken
@@ -54,19 +51,19 @@ class UserSerializer(serializers.ModelSerializer):
 
 class RepublicSerializer(serializers.ModelSerializer):
     address = AddressSerializer()
-    user_name = serializers.CharField(source='user.username', read_only=True)
-    user_phone = serializers.CharField(source='user.locator.phone', read_only=True)
 
     class Meta:
         model = Republic
-        fields = (  'title', 
+        fields = (
+                    'title', 
                     'description', 
                     'price', 
                     'house_type', 
                     'address',
-                    'user_name',
-                    'user_phone'
+                    'user'
                 )
+    
+        read_only_fields = ('user',)
 
     def create(self, validated_data):
         request = self.context.get('request')
@@ -81,3 +78,23 @@ class RepublicSerializer(serializers.ModelSerializer):
         republic.save()
         
         return republic
+    
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        representation = dict()    
+        user = Locator.objects.get(id=ret['user']) 
+
+        representation['title'] = ret['title']
+        representation['description'] = ret['description']
+        representation['price'] = ret['price']
+        representation['house_type'] = ret['house_type']
+        representation['address'] = ret['address']
+       
+        if user is not None:
+            representation['username'] = user.user.username
+            representation['phone'] = user.phone
+        else: 
+            representation['username'] = ''
+            representation['phone'] = ''
+
+        return representation

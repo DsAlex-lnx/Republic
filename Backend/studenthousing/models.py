@@ -19,7 +19,7 @@ class Locator(models.Model):
     update_at = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
 class Republic(models.Model):
     id_republic = models.UUIDField(primary_key=True, default=uuid4, editable=False)
